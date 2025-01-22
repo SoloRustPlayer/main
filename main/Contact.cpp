@@ -1,16 +1,21 @@
 #include "Contact.h"
 #include <iostream>
-#include <cstring>
+
+char* Contact::copyString(const char* source) {
+    int length = 0;
+    while (source[length] != '\0') length++;
+    char* result = new char[length + 1];
+    for (int i = 0; i < length; i++) {
+        result[i] = source[i];
+    }
+    result[length] = '\0';
+    return result;
+}
 
 Contact::Contact(const char* phone, const char* city, const char* country) {
-    this->phone = new char[strlen(phone) + 1];
-    strcpy(this->phone, phone);
-
-    this->city = new char[strlen(city) + 1];
-    strcpy(this->city, city);
-
-    this->country = new char[strlen(country) + 1];
-    strcpy(this->country, country);
+    this->phone = copyString(phone);
+    this->city = copyString(city);
+    this->country = copyString(country);
 }
 
 Contact::~Contact() {
